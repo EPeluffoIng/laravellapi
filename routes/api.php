@@ -15,6 +15,11 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+// Health check - no auth required
+Route::get('/ping', function () {
+    return response()->json(['message' => 'pong'], 200);
+});
+
 // Public authentication routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -27,3 +32,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
+
+
